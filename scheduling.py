@@ -16,8 +16,8 @@ class Event():
 
     def display(self):
         print(text_format.BOLD + text_format.RED + self.title + text_format.END)
-        print(text_format.CYAN + self.description + text_format.END)
-        print(text_format.YELLOW +
+        print(text_format.ORANGE + self.description + text_format.END)
+        print(text_format.CYAN +
         f'{self.start.hour}:{self.start.minute} - {self.end.hour}:{self.end.minute}' +
         text_format.END)
         print('')
@@ -43,7 +43,7 @@ class DaySchedule():
     def display_events(self):
         print('\n'*4)
         for i in range(len(self.events)):
-            print(i+1, end=') ')
+            print(i+1, end=' - ')
             self.events[i].display()
         print('\n'*4)
 
