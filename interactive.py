@@ -5,6 +5,8 @@ from text_formatter import text_format
 from time_operator import Time
 from terminal_commands import clear
 
+cwd = path.realpath(__file__)[:-14]
+
 def read_schedule_data(schedule_name, path):
     data = open(path, "r").read().split("\n")
     schedule = DaySchedule(schedule_name)    
@@ -33,12 +35,12 @@ def add_schedule():
     clear()
     name = input("Enter the name of the new schedule: ")
 
-    f = open("data/schedules", "a")
+    f = open(cwd + "data/schedules", "a")
     f.write(name + "\n")
     f.close()
 
     # Create data file for schedule
-    g = open(f"data/{name}_data", "a")
+    g = open(cwd + f"data/{name}_data", "a")
     g.close()
 
     print("Successfully added new schedule.")
@@ -48,11 +50,11 @@ def add_schedule():
 
 def add_event():
     clear()
-    valid_names = open("data/schedules", "r").read().split("\n")[:-1]
+    valid_names = open(cwd + "data/schedules", "r").read().split("\n")[:-1]
     print(f"{len(valid_names)} schedules found: " + ", ".join(valid_names) + ".")
     schedule_name = input("Enter the name of the schedule you want to add to: ")
-    if schedule_name in valid_names and path.exists(f"data/{schedule_name}_data"):
-        schedule = read_schedule_data(schedule_name, f"data/{schedule_name}_data")
+    if schedule_name in valid_names and path.exists(cwd + f"data/{schedule_name}_data"):
+        schedule = read_schedule_data(schedule_name, cwd + f"data/{schedule_name}_data")
         print("\n\nEvents so far:")
         schedule.display_events()
 
@@ -71,7 +73,7 @@ def add_event():
                                 start=Time(s_hour, s_minute),
                                 end=Time(e_hour, e_minute)))
         
-        write_schedule_data(schedule, f"data/{schedule_name}_data")
+        write_schedule_data(schedule, cwd + f"data/{schedule_name}_data")
 
     else:
         print("Error: Could not find that schedule.")
@@ -82,12 +84,12 @@ def add_event():
 
 def view_schedule():
     clear()
-    valid_names = open("data/schedules", "r").read().split("\n")[:-1]
+    valid_names = open(cwd + "data/schedules", "r").read().split("\n")[:-1]
     print(f"{len(valid_names)} schedules found: " + ", ".join(valid_names) + ".")
     schedule_name = input("Enter the name of the schedule you want to view: ")
 
-    if schedule_name in valid_names and path.exists(f"data/{schedule_name}_data"):
-        schedule = read_schedule_data(schedule_name, f"data/{schedule_name}_data")
+    if schedule_name in valid_names and path.exists(cwd + f"data/{schedule_name}_data"):
+        schedule = read_schedule_data(schedule_name, cwd + f"data/{schedule_name}_data")
         schedule.display_events()
 
     else:
