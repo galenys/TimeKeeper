@@ -1,4 +1,5 @@
-Bus&Read, code&3&0&4&0
 Wake Up&Shower, change, excercise.&6&0&7&0
 Bus&Music, friends, thinking.&7&0&8&0
-School&Study, relax, have fun.&8&0&3&0
+School&Study, relax, have fun.&8&0&15&0
+Bus&Read, code.&15&0&16&0
+Homework&Necessary evil.&16&0&17&30
